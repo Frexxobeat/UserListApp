@@ -1,0 +1,11 @@
+<h1>Details works! {{ user?.id }}</h1>
+
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="user && !loading && !error">
+  <h2>User Details  </h2>
+  <img [src]="user?.avatar" alt="{{ user?.first_name }} {{ user?.last_name }}" />
+  <p><strong>ID:</strong> {{ user?.id }}</p>
+  <p><strong>First Name:</strong> {{ user?.first_name }}</p>
+  <p><strong>Last Name:</strong> {{ user?.last_name }}</p>
+  <p><strong>Email:</strong> {{ user?.email }}</p>
+</div>
