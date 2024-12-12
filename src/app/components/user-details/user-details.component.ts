@@ -1,15 +1,16 @@
 import { Component, inject, Input, NgModule, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../user.service';
 import { User } from '../../user';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 
 @Component({
   selector: 'app-user-details',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule, RouterLink, NgxSkeletonLoaderModule],
   templateUrl: './user-details.component.html',
-  styleUrl: './user-details.component.scss'
+  styleUrl: './user-details.component.scss',
 })
 export class UserDetailsComponent {
 loading = true

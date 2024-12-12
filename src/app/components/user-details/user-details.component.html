@@ -1,11 +1,136 @@
-<h1>Details works! {{ user?.id }}</h1>
+<div class="min-h-screen bg-gray-100">
+  <!-- Page Header -->
+  <header class="bg-white shadow">
+    <div class=" mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb Navigation -->
+      <nav class="text-sm text-gray-500" aria-label="Breadcrumb">
+        <ol class="flex space-x-4">
+          <li>
+            <a routerLink="/" class="text-blue-600 hover:text-blue-800 font-medium">
+              Home
+            </a>
+          </li>
+          <li>
+            <span class="text-gray-400">/</span>
+          </li>
+          <li>
+            <a routerLink="/users" class="text-blue-600 hover:text-blue-800 font-medium">
+              Users
+            </a>
+          </li>
+          <li>
+            <span class="text-gray-400">/</span>
+          </li>
+          <li>
+            <span class="text-gray-900 font-bold">
+              {{ user?.first_name }} {{ user?.last_name }}
+            </span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </header>
 
-<div *ngIf="loading">Loading...</div>
-<div *ngIf="user && !loading && !error">
-  <h2>User Details  </h2>
-  <img [src]="user?.avatar" alt="{{ user?.first_name }} {{ user?.last_name }}" />
-  <p><strong>ID:</strong> {{ user?.id }}</p>
-  <p><strong>First Name:</strong> {{ user?.first_name }}</p>
-  <p><strong>Last Name:</strong> {{ user?.last_name }}</p>
-  <p><strong>Email:</strong> {{ user?.email }}</p>
+  <main class="py-10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div *ngIf="loading">
+        <!-- Skeleton for User Card -->
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+          <div class="bg-gray-50 p-6">
+            <div class="flex items-center gap-6">
+              <!-- Skeleton for Avatar -->
+              <ngx-skeleton-loader
+                class="w-32 h-32 rounded-full"
+                [theme]="{ 'border-radius': '50%', width: '8rem', height: '8rem' }"
+              ></ngx-skeleton-loader>
+              <div>
+                <!-- Skeleton for Name -->
+                <ngx-skeleton-loader
+                  class="mt-4"
+                  [theme]="{ width: '12rem', height: '1.5rem' }"
+                ></ngx-skeleton-loader>
+                <!-- Skeleton for Email -->
+                <ngx-skeleton-loader
+                  class="mt-2"
+                  [theme]="{ width: '16rem', height: '1rem' }"
+                ></ngx-skeleton-loader>
+              </div>
+            </div>
+          </div>
+          <div class="border-t border-gray-200 px-6 py-4">
+            <!-- Skeleton for ID -->
+            <ngx-skeleton-loader
+              class="mt-2"
+              [theme]="{ width: '8rem', height: '1rem' }"
+            ></ngx-skeleton-loader>
+            <!-- Skeleton for Name -->
+            <ngx-skeleton-loader
+              class="mt-2"
+              [theme]="{ width: '12rem', height: '1rem' }"
+            ></ngx-skeleton-loader>
+            <!-- Skeleton for Email -->
+            <ngx-skeleton-loader
+              class="mt-2"
+              [theme]="{ width: '16rem', height: '1rem' }"
+            ></ngx-skeleton-loader>
+          </div>
+        </div>
+      </div>
+      
+      <div *ngIf="!loading">
+       <!-- User Card -->
+       
+      <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <div class="bg-gray-50 p-6">
+          <div class="flex items-center gap-6">
+            <img
+              *ngIf="user?.avatar"
+              [src]="user?.avatar"
+              alt="{{ user?.first_name }} {{ user?.last_name }}"
+              class="w-32 h-32 rounded-full shadow-lg border-1 border-gray-500"
+            />
+           <div> <h2 class="mt-4 text-2xl font-bold text-gray-800">
+              {{ user?.first_name }} {{ user?.last_name }}
+            </h2>
+            <p class="text-gray-600"><a href="mailto:{{user?.email }}">{{user?.email}}</a></p>
+          </div>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-200 px-6 py-4">
+          <p class="text-gray-700 text-sm mt-2 flex items-center gap-1" >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5-3.9 19.5m-2.1-19.5-3.9 19.5" />
+            </svg>
+            
+            <strong class="font-semibold">ID:</strong> {{ user?.id }}
+          </p>
+          <p class="text-gray-700 text-sm mt-2 flex items-center gap-1" >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
+             <strong class="font-semibold">Name:</strong> {{ user?.first_name }} {{ user?.last_name }}
+          </p>
+          <p class="text-gray-700 text-sm mt-2 flex items-center gap-1" >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+            </svg>            
+             <strong class="font-semibold">Email:</strong> <a href="mailto:{{user?.email }}">{{user?.email}}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+      </div>
+      
+      
+  </main>
+
+  <!-- Loading and Error States -->
+  <div *ngIf="loading" class="text-center mt-4 text-blue-600 font-medium animate-pulse">
+    Loading...
+  </div>
+
+  <div *ngIf="error" class="text-center mt-4 text-red-600 font-medium">
+    {{ error }}
+  </div>
 </div>

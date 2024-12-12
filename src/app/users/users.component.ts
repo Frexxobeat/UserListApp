@@ -13,6 +13,7 @@ import { UserService } from '../user.service';
 })
 export class UsersComponent implements OnInit {
   users: User[] = [];
+  
   selectedId?: number;
   loading = false;
   error = '';
@@ -33,9 +34,9 @@ export class UsersComponent implements OnInit {
 
   fetchUsers(): void {
     this.loading = true;
-    this.userService.getUsers().subscribe(
+    this.userService.getUsers()
       users => {
-        this.users = users;
+        this.users = getuser;
         this.loading = false;
       },
       error => {

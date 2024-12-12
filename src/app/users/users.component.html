@@ -20,12 +20,18 @@
       </tr>
     </tbody>
   </table>
-  <!--
-  Heads up! 👋
-
-  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
--->
-
+  <div class="pagination-controls">
+    <button [disabled]="currentPage === 1" (click)="onPageChange(currentPage - 1)">
+      Previous
+    </button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button
+      [disabled]="currentPage === totalPages"
+      (click)="onPageChange(currentPage + 1)"
+    >
+      Next
+    </button>
+  </div>
 <ol class="flex justify-center gap-1 text-xs font-medium">
     <li>
       <a
